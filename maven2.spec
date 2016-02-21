@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.2.1
-Release:        47.12%{?dist}
+Release:        47.13%{?dist}
 Summary:        Java project management and project comprehension tool
 License:        ASL 2.0 and MIT and BSD
 URL:            http://maven.apache.org
@@ -20,15 +20,15 @@ Patch7:         %{pkg_name}-%{version}-classworlds.patch
 Patch8:         %{pkg_name}-%{version}-migrate-to-plexus-containers-container-default.patch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-mvn(org.apache.maven:maven-parent:pom:)
-BuildRequires:  maven30-mvn(org.apache.maven.plugins:maven-enforcer-plugin)
-BuildRequires:  maven30-mvn(org.apache.maven.plugins:maven-shade-plugin)
-BuildRequires:  maven30-mvn(org.apache.maven.wagon:wagon-provider-api)
-BuildRequires:  maven30-mvn(org.codehaus.modello:modello-maven-plugin)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-classworlds)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-container-default)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-interpolation)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-utils)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-parent:pom:)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugins:maven-enforcer-plugin)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugins:maven-shade-plugin)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.wagon:wagon-provider-api)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.modello:modello-maven-plugin)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-classworlds)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-container-default)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-interpolation)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-utils)
 
 %description
 Apache Maven is a software project management and comprehension tool. Based on
@@ -110,7 +110,7 @@ Javadoc for %{pkg_name}.
 
 %prep
 %setup -q -n apache-maven-2.2.1
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 %patch4 -b .unshade
@@ -151,14 +151,14 @@ sed -i s/edu.emory.mathcs.backport.// `find -name DefaultArtifactResolver.java`
 
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build -s -f -- -P all-models
 %{?scl:EOF}
 
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -224,6 +224,9 @@ set -e -x
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.2.1-47.13
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 2.2.1-47.12
 - maven33 rebuild
 
