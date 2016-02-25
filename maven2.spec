@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.2.1
-Release:        47.13%{?dist}
+Release:        47.14%{?dist}
 Summary:        Java project management and project comprehension tool
 License:        ASL 2.0 and MIT and BSD
 URL:            http://maven.apache.org
@@ -19,7 +19,7 @@ Patch6:         %{pkg_name}-%{version}-strip-jackrabbit-dep.patch
 Patch7:         %{pkg_name}-%{version}-classworlds.patch
 Patch8:         %{pkg_name}-%{version}-migrate-to-plexus-containers-container-default.patch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-parent:pom:)
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugins:maven-enforcer-plugin)
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugins:maven-shade-plugin)
@@ -224,6 +224,9 @@ set -e -x
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 2.2.1-47.14
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.2.1-47.13
 - maven33 rebuild #2
 
