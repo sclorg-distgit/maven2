@@ -3,7 +3,7 @@
 
 Name:           %{?scl_prefix}maven2
 Version:        2.2.1
-Release:        55.1%{?dist}
+Release:        55.2%{?dist}
 Summary:        Java project management and project comprehension tool
 License:        ASL 2.0 and MIT and BSD
 URL:            http://maven.apache.org
@@ -186,6 +186,9 @@ done
 %doc LICENSE.txt NOTICE.txt
 
 %changelog
+* Thu Jun 22 2017 Michael Simacek <msimacek@redhat.com> - 2.2.1-55.2
+- Mass rebuild 2017-06-22
+
 * Wed Jun 21 2017 Java Maintainers <java-maint@redhat.com> - 2.2.1-55.1
 - Automated package import and SCL-ization
 
